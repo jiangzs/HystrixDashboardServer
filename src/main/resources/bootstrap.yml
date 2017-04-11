@@ -1,0 +1,42 @@
+management:
+  context-path: /admin
+  security:
+    enabled: false
+#  security:
+#    basic:
+#      enabled: true
+#    user:
+#      name: admin
+#      password: admin
+
+info:
+  build:
+    groupId: '@project.groupId@'
+    artifactId: '@project.artifactId@'
+    name: '@project.name@'
+    description: '@project.description@'
+    version: '@project.version@'
+    buildTime: '@maven.build.timestamp@'
+
+spring:
+  application:
+    name: HystrixDashboardServer
+  cloud:
+    config:
+      discovery:
+        enabled: true             #默认 false
+        serviceId: configserver   #默认 configserver
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://192.168.99.100:8761/eureka/
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+    preferIpAddress: true
+    ipAddress: 192.168.99.100

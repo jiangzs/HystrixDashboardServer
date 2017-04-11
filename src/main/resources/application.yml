@@ -1,0 +1,14 @@
+server:
+    port: 9898
+
+
+turbine:
+  aggregator:
+    clusterConfig: GETWAYAPPTEST,ORDERSERVICE,USERSERVICE,
+  appConfig: GetWayAppTest,OrderService,UserService
+  instanceUrlSuffix: /admin/hystrix.stream
+  instanceInsertPort: true
+  combineHostPort: true
+
+InstanceDiscovery:
+  impl: org.springframework.cloud.netflix.turbine.EurekaInstanceDiscovery
